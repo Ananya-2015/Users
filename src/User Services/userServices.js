@@ -21,9 +21,9 @@ exports.getUser = async(id) => {
     
 }
 
-exports.postUser =  async(name, age) => {
+exports.postUser =  async(name, age, books) => {
     const db = getdb.getdb()
-    const newUser = await db.collection('users').insertOne({name: name, age : age})
+    const newUser = await db.collection('users').insertOne({name: name, age : age, books : books})
     if (newUser.acknowledged){
         return newUser
 
@@ -47,7 +47,7 @@ exports.updateUser = async(id, query) => {
 exports.deleteUser = async(id) => {
     const db = getdb.getdb()
     const user = await db.collection('users').deleteOne({_id : id})
-    console.log(user)
+    // console.log(user)
     if(user.deletedCount !== 0) {
         return user
     }

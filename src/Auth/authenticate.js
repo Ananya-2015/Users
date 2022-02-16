@@ -1,0 +1,4 @@
+
+exports.isAuthenticated = (req, res) => {
+    
+}

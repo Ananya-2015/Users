@@ -1,4 +1,4 @@
-const { json } = require('express/lib/response')
+const { json, type } = require('express/lib/response')
 const { ObjectId } = require('mongodb')
 const userService = require('../User Services/userServices')
 
@@ -26,7 +26,8 @@ exports.getUser = async(req, res, next) => {
 }
 exports.postUser =  async (req, res, next) => {
     try {
-        const newUser = await userService.postUser(req.query.name, req.query.age)
+        
+        const newUser = await userService.postUser(req.body.name, req.body.age, req.body.books)
         res.json({
             message: 'Posted One User',
             body: {
